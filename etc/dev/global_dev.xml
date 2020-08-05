@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<node fwinfo="endpoint">
+  <node address="0x1" mask="0x1" id="nuke"/>
+  <node address="0x1" mask="0x2" id="soft_rst"/>
+</node>
+

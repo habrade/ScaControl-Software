@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<node fwinfo="endpoint">
+    <node address="0x0" mask="0x01" id="ref_locked"   permission="r"/>
+    <node address="0x0" mask="0x02" id="dff_locked"   permission="r"/>
+
+    <node address="0x2" mask="0x01" id="start_pad"    permission="rw"/>
+    <node address="0x2" mask="0x02" id="trigger_pad"  permission="rw"/>
+    <node address="0x2" mask="0x04" id="enable_r_dff" permission="rw"/>
+    <node address="0x2" mask="0x08" id="din_dff"      permission="rw"/>
+    <node address="0x2" mask="0x10" id="bit_0_cp"     permission="rw"/>
+    <node address="0x2" mask="0x20" id="bit_1_cp"     permission="rw"/>
+
+    <node address="0x3" mask="0x01" id="rst_ref"      permission="rw"/>
+    <node address="0x3" mask="0x02" id="rst_dff"      permission="rw"/>
+    <node address="0x3" mask="0x04" id="rst_ref_drp"  permission="rw"/>
+    <node address="0x3" mask="0x08" id="rst_dff_drp"  permission="rw"/>
+
+    <node address="0x800" tags="slave" id="ref_clk_drp"  module="file://../slave/drp_slave.xml"  />
+    <node address="0xc00" tags="slave" id="dff_clk_drp"  module="file://../slave/drp_slave.xml"  />
+</node>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<node description="Frequency counter" fwinfo="endpoint">
+	<node address="0x0" id="count" mask="0xffffff" permission="r"/>
+	<node address="0x0" id="valid" mask="0x1000000" permission="r"/>
+	<node address="0x1" id="chan_sel" mask="0xf" permission="rw"/>
+	<node address="0x1" id="en_crap_mode" mask="0x10" permission="rw"/>
+</node>

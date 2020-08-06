@@ -7,8 +7,8 @@ from lib.mmcm import Mmcm
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 log = logging.getLogger(__name__)
-log.setLevel(logging.INFO)
-coloredlogs.install(level='INFO', logger=log)
+log.setLevel(logging.DEBUG)
+coloredlogs.install(level="DEBUG", logger=log)
 
 __author__ = "Sheng Dong"
 __email__ = "s.dong@mails.ccnu.edu.cn"
@@ -37,7 +37,7 @@ class ScaDevice:
         log.debug("SCA Device")
 
     def start(self, enable):
-        reg_name = self.io_reg_base + "start_pad"
+        reg_name = self.sca_base + "start_pad"
         node = self.hw.getNode(reg_name)
         if enable:
             node.write(1)
@@ -46,7 +46,7 @@ class ScaDevice:
         self.hw.dispatch()
 
     def trigger(self, enable):
-        reg_name = self.io_reg_base + "trigger_pad"
+        reg_name = self.sca_base + "trigger_pad"
         node = self.hw.getNode(reg_name)
         if enable:
             node.write(1)
@@ -55,7 +55,7 @@ class ScaDevice:
         self.hw.dispatch()
 
     def dff_enable(self, enable):
-        reg_name = self.io_reg_base + "enable_r_dff"
+        reg_name = self.sca_base + "enable_r_dff"
         node = self.hw.getNode(reg_name)
         if enable:
             node.write(1)
@@ -64,7 +64,7 @@ class ScaDevice:
         self.hw.dispatch()
 
     def set_bit0(self, enable):
-        reg_name = self.io_reg_base + "bit_0_cp"
+        reg_name = self.sca_base + "bit_0_cp"
         node = self.hw.getNode(reg_name)
         if enable:
             node.write(1)
@@ -73,7 +73,7 @@ class ScaDevice:
         self.hw.dispatch()
 
     def set_bit1(self, enable):
-        reg_name = self.io_reg_base + "bit_1_cp"
+        reg_name = self.sca_base + "bit_1_cp"
         node = self.hw.getNode(reg_name)
         if enable:
             node.write(1)
@@ -595,9 +595,11 @@ class ScaDevice:
             reg_name = self.sca_base + "rst_dff"
         log.debug("clk_sel: {:d} \t reg_name: {:}".format(clk_sel, reg_name))
         node = self.hw.getNode(reg_name)
-        write_val = 0
         if enabled:
             write_val = 1
+        else:
+            write_val = 0
+
         node.write(write_val)
         if go_dispatch:
             self.hw.dispatch()
@@ -609,9 +611,10 @@ class ScaDevice:
             reg_name = self.sca_base + "rst_dff_drp"
         log.debug("clk_sel: {:d} \t reg_name: {:}".format(clk_sel, reg_name))
         node = self.hw.getNode(reg_name)
-        write_val = 0
         if enabled:
             write_val = 1
+        else:
+            write_val = 0
         node.write(write_val)
         if go_dispatch:
             self.hw.dispatch()

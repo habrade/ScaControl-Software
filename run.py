@@ -33,11 +33,17 @@ if __name__ == '__main__':
 
 
 	## Set SCA clocks
-    Fout_ref = 6.2
-    Fout_dff = 10.5
-    Precision = 0.1  ## Unit: Hundred percent
+    Fout_ref = 1000/120   ## Unit: MHz
+    Fout_dff = 1000/120  ## Unit: MHz
+    Precision = 0.1  ## Unit: Hundred percent, %
 
+
+    log.info("MMCM initial Status:")
     chn = 0
+    log.info("clock {:} is locked: {:}!".format(chn, sca_dev.is_locked(chn)))
+    chn = 1
+    log.info("clock {:} is locked: {:}!".format(chn, sca_dev.is_locked(chn)))
+
     sca_dev.set_frq(chn, Fout_ref, Precision)
     time.sleep(1)
     freq_ref = freq_ctr_dev.get_chn_freq(chn)
@@ -51,7 +57,7 @@ if __name__ == '__main__':
     freq_dff = freq_ctr_dev.get_chn_freq(chn)
     log.info("Tested Dff Clock frequency is : {}".format(freq_dff))
 
-    ## Set Sca IO
+    # Set Sca IO
     sca_dev.set_bit0(True)
     sca_dev.set_bit1(True)
     sca_dev.start(True)

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <node>
     <node id="global_dev"     module="file://./dev/global_dev.xml"      address="0x00000000" tags="slave" />
-    <node id="sca_dev"        module="file://./dev/sca_dev.xml"         address="0x40000000" tags="slave" />
-    <node id="freq_ctr_dev"   module="file://./dev/ipbus_freq_ctr.xml"  address="0x80000000" tags="slave" />
+    <node id="dac8568_dev"    module="file://./dev/dac8568_dev.xml"     address="0x40000000" tags="slave" />
+    <node id="sca_dev"        module="file://./dev/sca_dev.xml"         address="0x80000000" tags="slave" />
+    <node id="freq_ctr_dev"   module="file://./dev/ipbus_freq_ctr.xml"  address="0xc0000000" tags="slave" />
 </node>
 

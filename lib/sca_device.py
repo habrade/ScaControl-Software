@@ -574,21 +574,24 @@ class ScaDevice:
         return clkfb_regs, div_reg, filter_regs, locking_regs
 
     def is_locked(self, clk_sel):
-        reg_name = self.sca_base + "ref_locked"
-        if int(clk_sel) == 1:
+        if clk_sel == 0:
+            reg_name = self.sca_base + "ref_locked"
+        else:
             reg_name = self.sca_base + "dff_locked"
         node = self.hw.getNode(reg_name)
         locked_raw = node.read()
         self.hw.dispatch()
-        log.debug("locked chn = {:d} value={:d}".format(clk_sel, locked_raw.value()))
-        if locked_raw.value() == 1:
+        locked = locked_raw.value()
+        log.debug("locked chn = {:d} value={:d}".format(clk_sel, locked))
+        if locked == 1:
             return True
         else:
             return False
 
     def rst_mmcm(self, clk_sel, enabled, go_dispatch=False):
-        reg_name = self.sca_base + "rst_ref"
-        if int(clk_sel) == 1:
+        if clk_sel == 0:
+            reg_name = self.sca_base + "rst_ref"
+        else:
             reg_name = self.sca_base + "rst_dff"
         log.debug("clk_sel: {:d} \t reg_name: {:}".format(clk_sel, reg_name))
         node = self.hw.getNode(reg_name)
@@ -600,8 +603,9 @@ class ScaDevice:
             self.hw.dispatch()
 
     def rst_drp(self, clk_sel, enabled, go_dispatch=False):
-        reg_name = self.sca_base + "rst_ref_drp"
-        if int(clk_sel) == 1:
+        if clk_sel == 0:
+            reg_name = self.sca_base + "rst_ref_drp"
+        else:
             reg_name = self.sca_base + "rst_dff_drp"
         log.debug("clk_sel: {:d} \t reg_name: {:}".format(clk_sel, reg_name))
         node = self.hw.getNode(reg_name)

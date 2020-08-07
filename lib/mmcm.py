@@ -18,8 +18,8 @@ class Mmcm:
         self.Fout = Fout
         self.Fin = 31.25  # MHz
 
-        self.Fin_min = 933
-        self.Fin_max = 10
+        self.Fin_max = 933
+        self.Fin_min = 10
         self.Fpfd_max = 500
         self.Fpfd_min = 10
         self.Fvco_max = 1440

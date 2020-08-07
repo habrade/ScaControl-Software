@@ -31,7 +31,7 @@ if __name__ == '__main__':
     global_dev.set_soft_rst()
 
     ## Set SCA clocks
-    Fout_ref = 1000 / 120  ## Unit: MHz
+    Fout_ref = 1000 / 180  ## Unit: MHz
     Fout_dff = 1000 / 120  ## Unit: MHz
     Precision = 0.1  ## Unit: Hundred percent, %
 
@@ -53,9 +53,11 @@ if __name__ == '__main__':
     # Set Sca IO
     sca_dev.set_bit0(True)
     sca_dev.set_bit1(True)
-    sca_dev.dff_enable(True)
     sca_dev.start(True)
 
-    sca_dev.trigger(True)
-    time.sleep(0.001)
-    sca_dev.trigger(False)
+    sca_dev.dff_enable(True)
+
+    sca_dev.set_din(True, False)
+    sca_dev.set_din(True, False)
+    sca_dev.trigger(True, False)
+    sca_dev.trigger(False, True)

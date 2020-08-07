@@ -7,8 +7,8 @@ from lib.mmcm import Mmcm
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 log = logging.getLogger(__name__)
-log.setLevel(logging.INFO)
-coloredlogs.install(level="INFO", logger=log)
+log.setLevel(logging.DEBUG)
+coloredlogs.install(level="DEBUG", logger=log)
 
 __author__ = "Sheng Dong"
 __email__ = "s.dong@mails.ccnu.edu.cn"
@@ -45,14 +45,25 @@ class ScaDevice:
             node.write(0)
         self.hw.dispatch()
 
-    def trigger(self, enable):
+    def trigger(self, enable, go_dispatch):
         reg_name = self.sca_base + "trigger_pad"
         node = self.hw.getNode(reg_name)
         if enable:
             node.write(1)
         else:
             node.write(0)
-        self.hw.dispatch()
+        if go_dispatch:
+            self.hw.dispatch()
+    
+    def set_din(self, enable, go_dispatch):
+        reg_name = self.sca_base + "din_dff"
+        node = self.hw.getNode(reg_name)
+        if enable:
+            node.write(1)
+        else:
+            node.write(0)
+        if go_dispatch:
+            self.hw.dispatch()
 
     def dff_enable(self, enable):
         reg_name = self.sca_base + "enable_r_dff"

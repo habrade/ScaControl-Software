@@ -679,7 +679,7 @@ class ScaDevice:
 
     def set_frq(self, chn, frq, prec=0.1):
         mmcm_inst = Mmcm(frq)
-        while True:
+        while mmcm_inst.M > mmcm_inst.Mmin:
             ## Set Sca Clocks, parameters: Do, M, D
             ## Frq: (clkin * M)/(DO * D)
             DO, M, D = mmcm_inst.get_parameters()

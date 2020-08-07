@@ -42,13 +42,13 @@ if __name__ == '__main__':
     for chn in [0, 1]:
         if chn == 0:
             clock_name = "Ref"
+            sca_dev.set_frq(chn, Fout_ref, Precision)
         else:
             clock_name = "Dff"
-        sca_dev.set_frq(chn, Fout_ref, Precision)
+            sca_dev.set_frq(chn, Fout_dff, Precision)
         time.sleep(1)
         freq_ref = freq_ctr_dev.get_chn_freq(chn)
         log.info("Tested {:s} Clock frequency is : {}".format(clock_name, freq_ref))
-        time.sleep(1)
 
     # Set Sca IO
     sca_dev.set_bit0(True)

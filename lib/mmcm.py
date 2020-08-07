@@ -32,7 +32,7 @@ class Mmcm:
         self.Mmin = self.get_Mmin()
         self.Mmax = self.get_Mmax()
         self.Mideal = self.get_Mideal()
-        self.DOmin = 2.0
+        self.DOmin = 1.0
         self.DOmax = 128.0
 
         # self.M = int(self.Mideal/0.125)*0.125
@@ -113,7 +113,7 @@ class Mmcm:
             else:
                 self.DO += 0.125
                 if self.DO > self.DOmax:
-                    self.DO = self.Dmin
+                    self.DO = self.DOmin
                 self.D = math.ceil((self.Fin * self.M) / (self.DO * self.Fout))
 
         log.debug("Get DO: {} \t M: {} \t D: {}".format(self.DO, self.M, self.D))
